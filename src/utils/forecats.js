@@ -9,10 +9,18 @@ const forecast = (lat, lon, cb) => {
       cb("Unable to find location.", undefined);
     } else {
       const { current } = body;
-      const { temperature, feelslike } = current;
+      const {
+        temperature,
+        feelslike,
+        weather_descriptions,
+        observation_time,
+        humidity,
+      } = current;
+
+      console.log(body);
       cb(
         undefined,
-        `It is currently ${temperature} degrees out, but it feels like ${feelslike}`
+        `${weather_descriptions[0]}. It is currently ${temperature} degrees out, but it feels like ${feelslike}. The humidity is ${humidity}%. Last updated: ${observation_time}. `
       );
     }
   });
